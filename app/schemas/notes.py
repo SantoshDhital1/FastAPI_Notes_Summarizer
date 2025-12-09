@@ -1,8 +1,15 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class NoteCreate(BaseModel):
     title: str
     content: str
+
+
+class NoteUpdate(BaseModel):
+    title: Optional[str] = None
+    content: Optional[str] = None
+
 
 class NoteOut(BaseModel):
     id: int
@@ -11,4 +18,4 @@ class NoteOut(BaseModel):
     summary: str | None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
